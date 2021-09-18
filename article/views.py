@@ -221,6 +221,7 @@ class ArticleDetailView(DetailView):
             md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
+                'markdown.extensions.tables',
                 TocExtension(slugify=slugify),
             ])
             obj.body = md.convert(obj.body)

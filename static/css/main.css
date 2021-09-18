@@ -1,6 +1,7 @@
 /* 背景 */
 .index-hearder-bg {
-    background: url("http://images.kudaompq.top/20210812143122.jpg") no-repeat center;
+    background: url('http://images.kudaompq.top/20210812143122.jpg') no-repeat
+        center;
     background-size: cover;
     height: calc(100vh);
     width: 100%;
@@ -150,7 +151,6 @@ blockquote {
 .bar-tags {
     padding: 0;
     margin-left: 15px;
-
 }
 
 .bar-tags li {
@@ -163,19 +163,16 @@ blockquote {
 }
 
 #bar-article li:before {
-    content: "\f061";
+    content: '\f061';
 }
-
 
 #bar-archive li:before {
-    content: "\f0c1";
+    content: '\f0c1';
 }
-
 
 #bar-category li:before {
-    content: "\f07b";
+    content: '\f07b';
 }
-
 
 /*边框阴影效果*/
 .shadow-small {
@@ -200,22 +197,24 @@ blockquote {
     font-weight: 400;
 }
 
-
 /*archive归档*/
-.archive, .category, .comment {
+.archive,
+.category,
+.comment {
     margin-bottom: 30px;
     padding: 50px 40px;
 }
 
 .archive-header {
-
 }
 
-.archive-header-title, .category-header-title {
+.archive-header-title,
+.category-header-title {
     font-size: 28px;
 }
 
-.archive-header-note, .category-header-note {
+.archive-header-note,
+.category-header-note {
     font-size: 13px;
     color: #777777;
     margin-top: 5px;
@@ -232,7 +231,6 @@ blockquote {
 }
 
 .archive-item-collection {
-
 }
 
 .archive-item-collection-content {
@@ -243,16 +241,16 @@ blockquote {
 }
 
 /*archive中icon的更换*/
-.collapsed > .text, .text-active {
-    display: none !important
+.collapsed > .text,
+.text-active {
+    display: none !important;
 }
 
 .collapsed > .text-active {
-    display: inline-block !important
+    display: inline-block !important;
 }
 
 .category-list {
-
 }
 
 .category-item {
@@ -346,7 +344,6 @@ blockquote {
 .about-item {
     font-size: 15px;
     margin: 10px 0;
-
 }
 
 /*comment*/
@@ -375,7 +372,6 @@ blockquote {
 }
 
 .comment-info {
-
 }
 
 /*article博客正文*/
@@ -389,7 +385,7 @@ blockquote {
 
 .article-meta {
     text-align: center;
-    color: #DDDDDD;
+    color: #dddddd;
     font-size: 13px;
     margin-bottom: 30px;
 }
@@ -400,7 +396,7 @@ blockquote {
 
 .article-meta {
     text-align: center;
-    color: #DDDDDD;
+    color: #dddddd;
     font-size: 13px;
     margin-bottom: 30px;
 }
@@ -411,10 +407,41 @@ blockquote {
     font-weight: 300;
 }
 
-
-
 .article-content a {
-    color: #66d9ef;
+    color: #06f;
+}
+
+/*表格样式*/
+.article-content table {
+    width: 90%;
+    background: #ccc;
+    margin: 10px auto;
+    border-collapse: collapse; /*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
+}
+.article-content th,
+td {
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+.article-content th {
+    background: #eee;
+    font-weight: normal;
+}
+.article-content tr {
+    background: #fff;
+}
+.article-content tr:hover {
+    background: #cc0;
+}
+.article-content td a {
+    color: #06f;
+    text-decoration: none;
+}
+.article-content td a:hover {
+    color: #06f;
+    text-decoration: underline;
 }
 
 .article-category::after,
@@ -452,7 +479,6 @@ blockquote {
     display: inline-block !important;
 }
 
-
 /*****************************************
 分类边框
  *****************************************/
@@ -462,15 +488,12 @@ blockquote {
     margin: 5px;
 }
 
-
 /**********************************************
  a标签颜色
  **********************************************/
 .active-a {
     color: dodgerblue;
 }
-
-
 
 /**********************************************
 文章目录
