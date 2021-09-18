@@ -1,0 +1,108 @@
+{% load static %}
+{% load blog_tags %}
+
+<!--<editor-folder desc="右侧sidebar">-->
+<div class="col-lg-3 col-sm-3">
+
+    <!--<editor-folder desc="关于作者">-->
+    <div class="bar shadow-small text-center">
+        <img src="{% static 'images/avatar.png' %}" class="rounded-circle" alt="" style="width: 110px">
+        <div class="author-info-name margin-tb-normal">行茗</div>
+        <div class="author-info-name margin-tb-normal">
+            <div id="dynamic-content" class="dynamic-content">
+                <span class="dynamic-text">
+                    <!-- Words for rotation: js/main.js line 34 -->
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#">
+                    <div>文章</div>
+                    {% get_total_articles as article %}
+                    <div>{{ article.count }}</div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="">
+                    <div>标签</div>
+                    {% get_total_tags as tag %}
+                    <div>{{ tag.count }}</div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#">
+                    <div>分类</div>
+                    {% get_total_catagories as category %}
+                    <div>{{ category.count }}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="搜索">-->
+    <div class="bar shadow-small">
+        <h3 class="bar-title"><i class="fa fa-search"></i>&nbsp;搜索</h3>
+        <form class="nav-item text-dark text-center" action="{% url 'article:article_search' %}">
+            <input type="search" name="q" class="margin-t-search form-control" placeholder="搜索..." required>
+        </form>
+    </div>
+    <!--</editor-fold>-->
+
+
+    <!--<editor-folder desc="最近更新">-->
+    <div class="bar shadow-small">
+        <h3 class="bar-title"><i class="fa fa-list"></i>&nbsp;最近更新</h3>
+        <ul class="bar-list" id="bar-article">
+            {% get_newest_article as new_posts %}
+            {% for new_post in new_posts %}
+            <li><a href="{% url 'article:article_detail' new_post.id %}">{{ new_post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="分类">-->
+    <div class="bar shadow-small">
+        <h3 class="bar-title"><i class="fa fa-folder-open"></i>&nbsp;分类</h3>
+        <ul class="bar-list" id="bar-category">
+            {% get_category_list as categories %}
+            {% for category in categories %}
+            <li><a href="{% url 'article:article_category_list' category.slug %}">{{ category.name }}
+                    ({{ category.total_num }})
+                </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="标签">-->
+    <div class="bar shadow-small">
+        <h3 class="bar-title"><i class="fa fa-tags"></i>&nbsp;标签</h3>
+        <div class="card-tag-cloud text-center">
+            {% get_tags_list as tags %}
+            {% for tag in tags %}
+            <a href="{% url 'article:article_tag_list' tag.slug %}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="友情链接">-->
+
+    <div class="bar shadow-small">
+        <h3 class="bar-title"><i class="fa fa-link"></i>&nbsp;友情链接</h3>
+        <ul class="bar-list">
+            <li><a href="https://github.com/ZhiXingZhuoMing/xingming"><i class="fa fa-link"></i>&nbsp;博客源码</a>
+            </li>
+            {% get_friends_list as friends %}
+            {% for friend in friends %}
+            <li><a href="{{ friend.url }}"><i class="fa fa-link"></i>&nbsp;{{ friend.name }}
+                </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!--</editor-fold>-->
+</div>
+<!--</editor-fold>-->

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>详情-行茗的博客</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="icon" href="images/favicon.ico">
+</head>
+<body>
+
+<!--<editor-folder desc="顶部导航栏">-->
+<div class="container margin-b-lg">
+    <nav class="navbar navbar-expand-md border-bottom">
+        <!-- logo -->
+        <h1><a class="navbar-brand text-dark font-size-bg" href="#">行茗的博客</a></h1>
+        <!-- 当屏幕小的时候自动收缩导航栏改用下拉列表 -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar">
+            <i class="fa fa-bars"></i>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-end" id="headerNavbar">
+            <ul class="navbar-nav font-size-lg">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="index.html"><i class="fa fa-home"></i>&nbsp;首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="category.html"><i class="fa fa-folder-open"></i>&nbsp;分类</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="tags.html"><i class="fa fa-tags"></i>&nbsp;标签</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="archive.html"><i class="fa fa-archive"></i>&nbsp;归档</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="about.html"><i class="fa fa-user"></i>&nbsp;关于</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--</editor-fold>-->
+
+<div id="serviceQQ" onmouseover="toBig()" onmouseout="toSmall()">
+    <div class="onlinebox">
+        <div class="onlinebox-t"></div>
+        <ul class="onlinebox-m">
+            <li class="yellow">QQ：105673632</li>
+            <li class="yellow">QQ：820778544</li>
+            <li><a target="_blank" href="http://www.17sucai.com/"><img width="90" border="0" height="25" src="images/img3-5-btn1.gif"></a></li>
+            <li><a target="_blank" href="http://www.17sucai.com/"><img width="90" border="0" height="25" src="images/img3-5-btn2.gif"></a></li>
+            <li>
+                <p class="qqt">会员交流群<br /><span class="yellow">2745645722</span></p>
+                <p class="qqt">会员交流群<br /><span class="yellow">6518954422</span></p>
+            </li>
+        </ul>
+        <div class="onlinebox-b"></div>
+    </div>
+    <div class="onbtn"></div>
+</div>
+<script type="text/javascript">
+    online = function (id, _top, _left) {
+        var me = id.charAt ? document.getElementById(id) : id, d1 = document.body, d2 = document.documentElement;
+        d1.style.height = d2.style.height = '100%';
+        me.style.top = _top ? _top + 'px' : 0;
+        me.style.left = _left + "px";
+        me.style.position = 'absolute';
+        setInterval(function () {
+            me.style.top = parseInt(me.style.top) + (Math.max(d1.scrollTop, d2.scrollTop) + _top - parseInt(me.style.top)) * 0.1 + 'px';
+        }, 10 + parseInt(Math.random() * 20));
+        return arguments.callee;
+    };
+
+    window.onload = function () {
+        online('serviceQQ', 100, -152);
+    }
+
+    lastScrollY = 0;
+
+    var InterTime = 1;
+    var maxWidth = -1;
+    var minWidth = -152;
+    var numInter = 8;
+
+    var BigInter;
+    var SmallInter;
+
+    var o = document.getElementById("serviceQQ");
+    var i = parseInt(o.style.left);
+
+    function Big() {
+        if (parseInt(o.style.left) < maxWidth) {
+            i = parseInt(o.style.left);
+            i += numInter;
+            o.style.left = i + "px";
+            if (i == maxWidth)
+                clearInterval(BigInter);
+        }
+    }
+
+    function toBig() {
+        clearInterval(SmallInter);
+        clearInterval(BigInter);
+        BigInter = setInterval(Big, InterTime);
+    }
+
+    function Small() {
+        if (parseInt(o.style.left) > minWidth) {
+            i = parseInt(o.style.left);
+            i -= numInter;
+            o.style.left = i + "px";
+            if (i == minWidth)
+                clearInterval(SmallInter);
+        }
+    }
+
+    function toSmall() {
+        clearInterval(SmallInter);
+        clearInterval(BigInter);
+        SmallInter = setInterval(Small, InterTime);
+    }
+</script>
+
+<div class="container margin-b-lg">
+
+    <div class="row">
+
+        <!--<editor-folder desc="博客详情">-->
+        <div class="col-lg-8 col-sm-8">
+            <div class="article-body shadow-small">
+                <div class="article-header">
+                    <h1 class="article-title">Django 博客开发入门教程：前言</h1>
+                    <div class="article-meta">
+                        <span class="article-category">
+                            <a href="#"><i class="fa fa-folder-open"></i>&nbsp;Django 博客教程</a></span>
+                        <span class="article-date"><a href="#"><i class="fa fa-calendar"></i>&nbsp;2021年8月13日</a></span>
+                        <span class="article-link"><a href="#"><i class="fa fa-comments"></i>&nbsp;4</a></span>
+                        <span class="views-count"><a href="#"><i class="fa fa-eye"></i>&nbsp;588</a></span>
+                    </div>
+                </div>
+                <div class="article-content clearfix">
+                    <p>Django 是使用 Python 编写的一个开源 Web 框架，可以用来快速搭建一个高性能的网站。</p>
+                    <blockquote class="bg_blockquote">
+                        <p>Django makes it easier to build better Web apps more quickly and with less
+                            code.</p>
+                        <p>Django 让你以更快的速度、更少的代码、更轻松的方式搭建更好的 Web 应用。</p>
+                    </blockquote>
+                    <p>本教程将带你使用 Django 快速开发属于自己的 Blog 网站。</p>
+                    <h2>教程特点</h2>
+                    <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。</p>
+                    <p>带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django 开发的技巧。</p>
+                    <h2>谁适合这个教程</h2>
+                    <p><strong>本教程主要面向零基础的 Django 新人。</strong></p>
+                    <p>只需要一点点 Python 语言的基础，就可以顺利阅读本教程。</p>
+                    <p>如果你已有一定的 Django 开发经验，也能从本教程中学到更多的 Django 开发技巧。</p>
+                    <h2>在线预览</h2>
+                    <p>Django 是使用 Python 编写的一个开源 Web 框架，可以用来快速搭建一个高性能的网站。</p>
+                    <blockquote class="bg_blockquote">
+                        <p>Django makes it easier to build better Web apps more quickly and with less
+                            code.</p>
+                        <p>Django 让你以更快的速度、更少的代码、更轻松的方式搭建更好的 Web 应用。</p>
+                    </blockquote>
+                    <p>本教程将带你使用 Django 快速开发属于自己的 Blog 网站。</p>
+                    <h2>教程特点</h2>
+                    <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。</p>
+                    <p>带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django 开发的技巧。</p>
+                    <h2>谁适合这个教程</h2>
+                    <p><strong>本教程主要面向零基础的 Django 新人。</strong></p>
+                    <p>只需要一点点 Python 语言的基础，就可以顺利阅读本教程。</p>
+                    <p>如果你已有一定的 Django 开发经验，也能从本教程中学到更多的 Django 开发技巧。</p>
+                    <h2>在线预览</h2>
+                </div>
+                <div class="margin-tb-normal">
+                    <blockquote class="bg_blockquote">
+                        <p class="m-1"><strong>版权声明：</strong>如无特殊说明，文章均为本站原创，转载请注明出处</p>
+                        <p class="m-1"><strong>本文链接：</strong>https://tendcode.com/article/mac-network-set/</p>
+                        <p class="m-1"><strong>许可协议：</strong><a href="https://creativecommons.org/licenses/by-nc/4.0/">署名-非商业性使用
+                            4.0 国际许可协议</a></p>
+                    </blockquote>
+                </div>
+
+                <div class="divider-hidden"></div>
+
+                <div class="card-tag-cloud">
+                    <a href="#" class="btn btn-dark">Django</a>
+                    <a href="#" class="btn btn-dark">Django</a>
+                    <a href="#" class="btn btn-dark">Django</a>
+                </div>
+                <div class="divider"></div>
+                <div class="w-100  margin-b-lg">
+                    <a href="#" class="btn float-left"><i class="fa fa-arrow-left"></i>&nbsp;上一篇</a>
+                    <a href="#" class="btn float-right">下一篇&nbsp;<i class="fa fa-arrow-right"></i></a>
+                </div>
+                <div class="divider divider-height"></div>
+                <!--评论list-->
+                <div class="archive-header margin-tb-large">
+                    <div class="comment-header-title margin-t-normal">3条评论</div>
+                    <div class="comment-reply-body">
+                        <div class="comment-item">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="http://images.kudaompq.top/20210812230344.jpg" alt=""
+                                         class="rounded-circle" style="width: 40px;">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="margin-ml-normal">
+                                        kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                        <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                    </div>
+                                    <div class="margin-tb-normal margin-ml-normal">
+                                        <p>
+                                            间歇性踌躇满志，持续性混吃等死怎么治
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="http://images.kudaompq.top/20210812230344.jpg" alt=""
+                                         class="rounded-circle" style="width: 40px;">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="margin-ml-normal">
+                                        kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                        <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                    </div>
+                                    <div class="margin-tb-normal margin-ml-normal">
+                                        <p>
+                                            间歇性踌躇满志，持续性混吃等死怎么治
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-t-normal">
+                                <div class="col-sm-2 text-center">
+                                    <img src="http://images.kudaompq.top/20210812230344.jpg" alt=""
+                                         class="rounded-circle" style="width: 30px;">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="margin-ml-normal">
+                                        kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                        <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                    </div>
+                                    <div class="margin-t-sm margin-ml-normal">
+                                        <p class="font-size-sm">回复@kudaompq</p>
+                                    </div>
+                                    <div class="margin-tb-normal margin-ml-normal">
+                                        <p>
+                                            混吃等死就行
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="http://images.kudaompq.top/20210812230344.jpg" alt=""
+                                         class="rounded-circle" style="width: 40px;">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="margin-ml-normal">
+                                        kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                        <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                    </div>
+                                    <div class="margin-tb-normal margin-ml-normal">
+                                        <p>
+                                            间歇性踌躇满志，持续性混吃等死怎么治
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--提交评论-->
+                <div class="archive-header margin-tb-large border-top">
+                    <div class="comment-header-title margin-t-normal" id="comment">评论</div>
+                    <div class="comment-body">
+                        <form action="#" class="form">
+                            <div class="row">
+                                <div class="col-sm-2 text-center">
+                                    <img src="http://images.kudaompq.top/20210812230344.jpg" alt=""
+                                         class="rounded-circle" style="width: 50px">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">昵称</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="必填" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">邮箱</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="必填" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a href="javascript:void(0);" onclick="onloadFile()"><i
+                                                    class="fa fa-image"></i></a>
+                                            <input type="file" style="display: none" name="file" id="file">
+                                            <button type="submit" class="btn btn-sm btn-light float-right">发送
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--</editor-fold>-->
+
+
+        <!--<editor-folder desc="右侧sidebar">-->
+        <div class="col-lg-4 col-sm-4">
+            <div class="bar shadow-small text-center">
+                <img src="images/avatar.png" class="rounded-circle" alt=""
+                     style="width: 110px">
+                <div class="author-info-name margin-tb-normal">行茗</div>
+                <div class="author-info-name margin-tb-normal">菜鸡运维</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="#">
+                            <div>文章</div>
+                            <div>31</div>
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="">
+                            <div>标签</div>
+                            <div>36</div>
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#">
+                            <div>分类</div>
+                            <div>9</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bar shadow-small">
+                <h3 class="bar-title"><i class="fa fa-search"></i>&nbsp;搜索</h3>
+                <form class="nav-item text-dark text-center" action="#">
+                    <input type="search" class="margin-t-search form-control" placeholder="搜索..." required>
+                </form>
+            </div>
+
+            <!-- 最新文章-->
+            <div class="bar shadow-small">
+                <h3 class="bar-title"><i class="fa fa-list"></i>&nbsp;最新文章</h3>
+                <ul class="bar-list" id="bar-article">
+                    <li><a href="#">Django 博客开发入门教程：前言</a></li>
+                    <li><a href="#">Django 博客开发入门教程：前言</a></li>
+                    <li><a href="#">Django 博客开发入门教程：前言</a></li>
+                    <li><a href="#">Django 博客开发入门教程：前言</a></li>
+                </ul>
+            </div>
+            <!--归档-->
+            <div class="bar shadow-small">
+                <h3 class="bar-title"><i class="fa fa-archive"></i>&nbsp;归档</h3>
+                <ul class="bar-list" id="bar-archive">
+                    <li><a href="#">2021年7月</a></li>
+                    <li><a href="#">2021年6月</a></li>
+                    <li><a href="#">2021年5月</a></li>
+                </ul>
+            </div>
+            <!--分类-->
+            <div class="bar shadow-small">
+                <h3 class="bar-title"><i class="fa fa-folder-open"></i>&nbsp;分类</h3>
+                <ul class="bar-list" id="bar-category">
+                    <li><a href="#">Django 博客教程 (13)</a></li>
+                    <li><a href="#">Python 教程 (11)</a></li>
+                    <li><a href="#">Django 用户认证 (8)</a></li>
+                </ul>
+            </div>
+            <div class="bar shadow-small">
+                <h3 class="bar-title"><i class="fa fa-tags"></i>&nbsp;标签</h3>
+                <div class="card-tag-cloud text-center">
+                    <a class="btn btn-primary" href="#">golang</a>
+                    <a class="btn btn-primary" href="#">HTTP</a>
+                    <a class="btn btn-primary" href="#">JavaWeb</a>
+                    <a class="btn btn-primary" href="#">Jsp</a>
+                    <a class="btn btn-primary" href="#">Kruskal算法</a>
+                    <a class="btn btn-primary" href="#">matplotlib</a>
+                    <a class="btn btn-primary" href="#">numpy</a>
+                    <a class="btn btn-primary" href="#">sklearn</a>
+                    <a class="btn btn-primary" href="#">pandas</a>
+                    <a class="btn btn-primary" href="#">Cookie</a>
+                    <a class="btn btn-primary" href="#">Session</a>
+                    <a class="btn btn-primary" href="#">开发</a>
+                    <a class="btn btn-primary" href="#">回溯法</a>
+                    <a class="btn btn-primary" href="#">并查集算法</a>
+                </div>
+            </div>
+        </div>
+        <!--</editor-fold>-->
+
+    </div>
+</div>
+
+<!--<editor-folder desc="底部备案信息等">-->
+<!--footer-->
+<div class="container">
+    <div class="row footer">
+        <div class="col-lg-12 col-sm-12 text-center">
+            <p class="footer-copyright">©2020 - 2021 By 行茗<br>©2020 - 2021 By 行茗</p>
+        </div>
+    </div>
+</div>
+<!--</editor-fold>-->
+
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

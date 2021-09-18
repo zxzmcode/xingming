@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.body }}
+{{ object.author.name }}
+# 文章内容
+{{ object.body_to_markdown }}

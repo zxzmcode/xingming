@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ article.title }} - 行茗 {% endblock %}
+
+
+
+
+{% block content %}
+    <!--<editor-folder desc="博客详情">-->
+    <div class="col-lg-9 col-sm-9">
+        <div class="article-body shadow-small">
+
+            <!--<editor-folder desc="文章详情标题等信息部分">-->
+            <div class="article-header">
+                <h1 class="article-title">{{ article.title }}</h1>
+                <div class="article-meta">
+                    <span class="article-category">
+                        <a href="{% url 'article:article_category_list' article.category.slug %}"><i
+                                class="fa fa-folder-open"></i>&nbsp;{{ article.category.name }}</a></span>
+                    <span class="article-date"><a href="#"><i
+                            class="fa fa-calendar"></i>&nbsp;{{ article.created | date:"Y年m月d日" }}</a></span>
+                    <!--
+                    <span class="article-link"><a href="#"><i class="fa fa-comments"></i>&nbsp;4</a></span>
+                    -->
+                    <span class="views-count"><a href="#">
+                        <i class="fa fa-eye"></i>&nbsp;{{ article.total_views }}</a></span>
+                </div>
+            </div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="文章详情内容部分">-->
+            <div class="article-content clearfix" id="article">
+                {{ article.body | safe }}
+            </div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="文章版权说明">-->
+            <div class="margin-tb-normal">
+                <blockquote class="bg_blockquote">
+                    <p class="m-1"><strong>版权声明：</strong>如无特殊说明，文章均为本站原创，转载请注明出处</p>
+                    <p class="m-1"><strong>本文链接：</strong>https://xingmingblog.top</p>
+                    <p class="m-1"><strong>许可协议：</strong>本博客所有文章除特别声明外，均采用
+                        <a href="https://creativecommons.org/licenses/by-nc/4.0/" style="color:#66d9ef;">CC BY-NC-SA
+                            4.0</a>
+                        许可协议。
+                    </p>
+                </blockquote>
+            </div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="分隔符">-->
+            <div class="divider-hidden"></div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="文章所属标签部分">-->
+            <div class="card-tag-cloud">
+                {% for tag in article.tags.all %}
+                    <a href="{% url 'article:article_tag_list' tag.slug %}" class="btn btn-dark">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="分隔符">-->
+            <div class="divider"></div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="相关上一篇下一篇文章推荐">-->
+            <div class="w-100  margin-b-lg">
+                {% if article.get_pre %}
+                    <a href="{% url 'article:article_detail' article.get_pre.id %}" class="btn float-left">
+                        <i class="fa fa-arrow-left"></i>
+                        &nbsp;{{ article.get_pre.title }}
+                    </a>
+                {% endif %}
+                {% if article.get_next %}
+                    <a href="{% url 'article:article_detail' article.get_next.id %}" class="btn float-right">
+                        {{ article.get_next.title }}&nbsp;
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                {% endif %}
+            </div>
+            <!--</editor-fold>-->
+
+            <!--<editor-folder desc="分割符">-->
+            <div class="divider divider-height"></div>
+            <!--</editor-folder>-->
+
+            <!--<editor-fold desc="评论列表区">-->
+            <!--
+            <div class="archive-header margin-tb-large">
+                <div class="comment-header-title margin-t-normal">3条评论</div>
+                <div class="comment-reply-body">
+                    <div class="comment-item">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <img src="http://images.kudaompq.top/20210812230344.jpg" alt="" class="rounded-circle"
+                                     style="width: 40px;">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="margin-ml-normal">
+                                    kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                    <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                </div>
+                                <div class="margin-tb-normal margin-ml-normal">
+                                    <p>
+                                        间歇性踌躇满志，持续性混吃等死怎么治
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-item">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <img src="http://images.kudaompq.top/20210812230344.jpg" alt="" class="rounded-circle"
+                                     style="width: 40px;">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="margin-ml-normal">
+                                    kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                    <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                </div>
+                                <div class="margin-tb-normal margin-ml-normal">
+                                    <p>
+                                        间歇性踌躇满志，持续性混吃等死怎么治
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-t-normal">
+                            <div class="col-sm-2 text-center">
+                                <img src="http://images.kudaompq.top/20210812230344.jpg" alt="" class="rounded-circle"
+                                     style="width: 30px;">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="margin-ml-normal">
+                                    kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                    <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                </div>
+                                <div class="margin-t-sm margin-ml-normal">
+                                    <p class="font-size-sm">回复@kudaompq</p>
+                                </div>
+                                <div class="margin-tb-normal margin-ml-normal">
+                                    <p>
+                                        混吃等死就行
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-item">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <img src="http://images.kudaompq.top/20210812230344.jpg" alt="" class="rounded-circle"
+                                     style="width: 40px;">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="margin-ml-normal">
+                                    kudaompq<span class="font-size-sm">&nbsp;&nbsp;&nbsp;2021-8-13</span>
+                                    <a href="#comment" class="float-right"><i class="fa fa-comment-o"></i></a>
+                                </div>
+                                <div class="margin-tb-normal margin-ml-normal">
+                                    <p>
+                                        间歇性踌躇满志，持续性混吃等死怎么治
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+            <!--</editor-fold>-->
+
+            <!--<editor-fold desc="提交评论区">-->
+            <!--
+            <div class="archive-header margin-tb-large border-top">
+                <div class="comment-header-title margin-t-normal" id="comment">评论</div>
+                <div class="comment-body">
+                    <form action="#" class="form">
+                        <div class="row">
+                            <div class="col-sm-2 text-center">
+                                <img src="http://images.kudaompq.top/20210812230344.jpg" alt="" class="rounded-circle"
+                                     style="width: 50px">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">昵称</span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="必填" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">邮箱</span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="必填" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a href="javascript:void(0);" onclick="onloadFile()"><i class="fa fa-image"></i></a>
+                                        <input type="file" style="display: none" name="file" id="file">
+                                        <button type="submit" class="btn btn-sm btn-light float-right">发送
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            -->
+            <!--</editor-fold>-->
+        </div>
+    </div>
+    <!--</editor-fold>-->
+
+    {% include 'sidebar.html' %}
+
+{% endblock %}

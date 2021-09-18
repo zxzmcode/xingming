@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} 首页 - 行茗 {% endblock %}
+{% block content %}
+
+<!--<editor-folder desc="博客列表">-->
+<div class="col-lg-9 col-sm-9 text-center">
+    <!--<editor-folder desc="最新最热">-->
+    <div class="w-100 text-left height-40px breadcrumb">
+        {% url 'article:article_list' as article_list %}
+        {% url 'article:article_hot_list' as article_hot_list %}
+        <a href="{{ article_list }}" class="{% if request.path == article_hot_list %}active-a{% endif %}"><i
+               class="fa fa-list"></i>&nbsp;最新</a>
+        <span style="width:10px;"></span>
+        <a href="{{ article_hot_list }}" class="{% if request.path == article_list %}active-a{% endif %}"><i
+               class="fa fa-fire"></i>&nbsp;最热</a>
+    </div>
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="博客列表for循环">-->
+    {% for article in articles %}
+    <div class="article-index shadow-small">
+        <div class="font-size-article-header">
+            <a href="{% url 'article:article_detail' article.id %}">{{ article.title }} </a>
+        </div>
+        <div class="article-index-tags">
+            <span class="article-category">
+                <a href="{% url 'article:article_category_list' article.category.slug %}">
+                    <i class="fa fa-folder-open"></i>&nbsp;{{ article.category.name }}
+                </a>
+            </span>
+            <span class="article-date">
+                <i class="fa fa-calendar"></i>&nbsp;{{ article.created | date:"Y年m月d日" }}
+            </span>
+            <!-- <span class="article-link"><a href="#"><i class="fa fa-comments"></i>&nbsp;4</a></span> -->
+            <span class="views-count">
+                <i class="fa fa-eye"></i>&nbsp;{{ article.total_views }}
+            </span>
+        </div>
+        <div class="article-index-content">
+            <p>{{ article.description | truncatechars:150 }}</p>
+            <div class="read-more cl-effect-14">
+                <a href="{% url 'article:article_detail' article.id %}" class="more-link">
+                    继续阅读 <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="分页">-->
+    <ul class="pagination pagination-sm justify-content-center">
+        {% if page_obj.has_previous and page_obj.previous_page_number != 1 %}
+        <li class="page-item">
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-dark">
+                <i class="fa fa-chevron-left"></i></a>
+        </li>
+        {% else %}
+        <li class="page-item"><span href="#" class="page-link text-dark"><i class="fa fa-chevron-left "></i></span>
+        </li>
+        {% endif %}
+        <li class="page-item">
+            <span
+                  class="page-link text-dark">第&nbsp;{{ page_obj.number }}&nbsp;/&nbsp;{{ paginator.num_pages }}&nbsp;页</span>
+        </li>
+        {% if page_obj.has_next %}
+        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link text-dark"><i
+                   class="fa fa-chevron-right"></i></a>
+        </li>
+        {% else %}
+        <li class="page-item"><span href="#" class="page-link text-dark"><i class="fa fa-chevron-right"></i></span>
+        </li>
+        {% endif %}
+    </ul>
+    <!--</editor-folder>-->
+
+</div>
+<!--</editor-fold>-->
+
+{% include 'sidebar.html' %}
+
+{% endblock %}

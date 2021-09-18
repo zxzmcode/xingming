@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    归档 - 行茗
+{% endblock %}
+{% block content %}
+    <div class="col-lg-9 col-sm-9">
+        <div class="archive shadow-small">
+            <div class="archive-header">
+                <div class="archive-header-title">归档</div>
+                <p class="archive-header-note">共{{ articles.count }}篇文章</p>
+            </div>
+
+            <!--<editor-folder desc="归档分解">-->
+            {% regroup articles.all by created.year as dates_by_year %}
+            {% for year in dates_by_year %}
+                <div class="archive-item">
+                    <a href="#collapse2021" class="archive-item-title" data-toggle="collapse">
+                        <i class="fa fa-calendar-plus-o text-active"></i>
+                        <i class="fa fa-calendar-minus-o text"></i>
+                        {{ year.grouper }}
+                    </a>
+                    <div class="archive-item-collection collapse show" id="collapse2021">
+                        {% for blog in year.list %}
+                            <a href="{% url 'article:article_detail' blog.id %}"
+                               class="archive-item-collection-content">
+                                <span> {{ blog.created |date:"m-d" }}&nbsp;&nbsp;&nbsp;</span>{{ blog.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <!--</editor-folder>-->
+        </div>
+    </div>
+
+
+    {% include 'sidebar.html' %}
+{% endblock %}
+

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+{% load highlight %}
+{% block title %}
+搜索结果: {{ query }} - 行茗
+{% endblock %}
+{% block content %}
+
+<!--<editor-folder desc="博客列表">-->
+<div class="col-lg-8 col-sm-8 text-center">
+
+    <!--<editor-folder desc="搜索结果">-->
+    <div class="w-100 text-center height-40px breadcrumb">
+        <h2>共搜索到{{ paginator.count }}篇文章</h2>
+    </div>
+    <!--</editor-folder>-->
+
+    <!--<editor-folder desc="博客列表for循环">-->
+    {% if query %}
+    {% for article in search_list %}
+    <div class="article-index shadow-small">
+        <div class="font-size-article-header">
+            <a href="{% url 'article:article_detail' article.object.id %}">{% my_highlight article.object.title query %}
+            </a>
+        </div>
+        <div class="article-index-tags">
+            <span class="article-category">
+                <a href="{% url 'article:article_category_list' article.object.category.slug %}">
+                    <i class="fa fa-folder-open"></i>&nbsp;{{ article.object.category.name }}
+                </a>
+            </span>
+            <span class="article-date">
+                <i class="fa fa-calendar"></i>&nbsp;{{ article.object.created | date:"Y年m月d日" }}
+            </span>
+            <!-- <span class="article-link"><a href="#"><i class="fa fa-comments"></i>&nbsp;4</a></span> -->
+            <span class="views-count">
+                <i class="fa fa-eye"></i>&nbsp;{{ article.object.total_views }}
+            </span>
+        </div>
+        <div class="article-index-content">
+            {% with article.object.body_to_markdown|safe as this_body %}
+            <p>{% highlight this_body with query max_length 150 %}</p>
+            {% endwith %}
+            <div class="read-more cl-effect-14">
+                <a href="{% url 'article:article_detail' article.object.id %}" class="more-link">
+                    继续阅读 <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!--</editor-fold>-->
+
+    <!--<editor-folder desc="分页">-->
+    {% if is_paginated %}
+    <ul class="pagination pagination-sm justify-content-center">
+        {% if page_obj.has_previous and page_obj.previous_page_number != 1 %}
+        <li class="page-item">
+            <a href="?q={{ query }}&amp;page={{ page_obj.previous_page_number }}" class="page-link text-dark">
+                <i class="fa fa-chevron-left"></i></a>
+        </li>
+        {% else %}
+        <li class="page-item"><span class="page-link text-dark"><i class="fa fa-chevron-left "></i></span>
+        </li>
+        {% endif %}
+        <li class="page-item">
+            <span
+                  class="page-link text-dark">第&nbsp;{{ page_obj.number }}&nbsp;/&nbsp;{{ paginator.num_pages }}&nbsp;页</span>
+        </li>
+        {% if page_obj.has_next %}
+        <li class="page-item"><a href="?q={{ query }}&amp;page={{ page_obj.next_page_number }}"
+               class="page-link text-dark"><i class="fa fa-chevron-right"></i></a>
+        </li>
+        {% else %}
+        <li class="page-item"><span class="page-link text-dark"><i class="fa fa-chevron-right"></i></span>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    <!--</editor-folder>-->
+
+</div>
+<!--</editor-fold>-->
+
+{% include 'sidebar.html' %}
+
+{% endblock %}

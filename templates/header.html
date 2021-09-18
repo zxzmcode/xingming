@@ -1,0 +1,36 @@
+{% load static %}
+<!--<editor-folder desc="顶部导航栏">-->
+<div class="container margin-b-lg">
+    <nav class="navbar navbar-expand-md border-bottom">
+        <!-- logo -->
+        <h1><a class="navbar-brand text-dark font-size-bg" href="{% url 'article:article_list' %}">行茗的博客</a></h1>
+        <!-- 当屏幕小的时候自动收缩导航栏改用下拉列表 -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar">
+            <i class="fa fa-bars"></i>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-end" id="headerNavbar">
+            <ul class="navbar-nav font-size-lg">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'article:article_list' %}"><i class="fa fa-home"></i>&nbsp;首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'article:article_category' %}">
+                        <i class="fa fa-folder-open"></i>&nbsp;分类
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'article:article_tag' %}"><i class="fa fa-tags"></i>&nbsp;标签</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'article:article_archive' %}"><i
+                            class="fa fa-archive"></i>&nbsp;归档</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'about' %}"><i class="fa fa-user"></i>&nbsp;关于</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--</editor-fold>-->

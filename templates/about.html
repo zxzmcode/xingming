@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    关于 - 行茗
+{% endblock %}
+{% block content %}
+
+    <div class="col-lg-9 col-sm-9">
+        <div class="archive shadow-small">
+            <div class="archive-header text-center">
+                <div class="archive-header-title"><span class="border-bottom">关于行茗</span></div>
+            </div>
+            <div class="about-content">
+                <div class="about-item text-xl-center">
+                    <img src="{% static 'images/avatar.png' %}">
+                </div>
+                <div class="about-item">
+                    性别：<span>男</span>
+                </div>
+                <div class="about-item">
+                    现居：<span>中国</span>
+                </div>
+                <div class="about-item">
+                    职业：<span>运维</span>
+                </div>
+                <div class="about-item">
+                    技能：<span>熟悉常用的中间件(如：Nginx、LVS、Rocketmq、Redis等)集群方案的部署调优。熟悉MYSQL的操作、配置及优化。熟悉MYSQL的主从、主主、PXC等集群方案。</span>
+                </div>
+                <div class="about-item">
+                    个人简介：<span>一个一直觉得自己还有很多内容需要学习的菜鸡小运维，相对于加班更喜欢旅游的菜鸡运维。出生于1994年。17年大学毕业。喜欢Python、容器、目前在学习K8S和Go、职业混子选手。</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% include 'sidebar.html' %}
+{% endblock %}
+
