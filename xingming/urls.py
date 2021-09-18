@@ -19,13 +19,10 @@ from django.urls import path, include
 from article.views import ArticleListView, about_author
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     # 配置主页入口
     path('', ArticleListView.as_view()),
     # 配置about的入口
     path('about/', about_author, name='about'),
     # 配置article的入口
     path('article/', include('article.urls', namespace='article')),
-    # 搜索栏
-    # path('search/', include('haystack.urls')),
 ]
