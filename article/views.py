@@ -1,9 +1,10 @@
 import markdown
+
 from django.views.generic import ListView, DetailView
 from django.utils.text import slugify
 from django.core.cache import cache
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 import time
 
@@ -13,6 +14,14 @@ from markdown.extensions.toc import TocExtension
 from article.models import Article, Category, Tag
 
 from xingming import settings
+
+
+# <editor-fold desc="index">
+def index_view(request):
+    return redirect("article:article_list")
+
+
+# </editor-fold>
 
 
 # <editor-fold desc="搜索">

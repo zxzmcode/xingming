@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x%+e5=&*o!jf#=rqy-_jn*)rzf3_#t9!$tgl23a(mn&b8yekkm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False 会导致开发的时候 静态文件无法加载
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -78,8 +79,7 @@ WSGI_APPLICATION = 'xingming.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 database_config = configparser.RawConfigParser()
-database_config.read('config/database.conf')
-
+database_config.read('config/database-windows.conf')
 
 DATABASES = {
     'default': {
@@ -148,6 +148,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
 
 # 媒体文件地址
 MEDIA_URL = '/media/'

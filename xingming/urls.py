@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from article.views import ArticleListView, about_author
+from article.views import index_view, about_author
+
+extra_patterns = [
+
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # 配置主页入口
-    path('', ArticleListView.as_view()),
+    path('', index_view),
     # 配置about的入口
     path('about/', about_author, name='about'),
     # 配置article的入口
