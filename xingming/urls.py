@@ -26,6 +26,4 @@ urlpatterns = [
     path('about/', about_author, name='about'),
     # 配置article的入口
     path('article/', include('article.urls', namespace='article')),
-    # 搜索栏
-    # path('search/', include('haystack.urls')),
 ]
