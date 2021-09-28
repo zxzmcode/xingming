@@ -21,7 +21,7 @@
     {% for article in articles %}
     <div class="article-index shadow-small">
         <div class="font-size-article-header">
-            <a href="{% url 'article:article_detail' article.id %}">{{ article.title }} </a>
+            <a href="{% url 'article:article_detail' article.slug %}">{{ article.title }} </a>
         </div>
         <div class="article-index-tags">
             <span class="article-category">
@@ -40,7 +40,7 @@
         <div class="article-index-content">
             <p>{{ article.description | truncatechars:150 }}</p>
             <div class="read-more cl-effect-14">
-                <a href="{% url 'article:article_detail' article.id %}" class="more-link">
+                <a href="{% url 'article:article_detail' article.slug %}" class="more-link">
                     继续阅读 <i class="fa fa-arrow-right"></i>
                 </a>
             </div>

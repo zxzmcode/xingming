@@ -22,7 +22,7 @@
                     </a>
                     <div class="archive-item-collection collapse show" id="collapse2021">
                         {% for blog in year.list %}
-                            <a href="{% url 'article:article_detail' blog.id %}"
+                            <a href="{% url 'article:article_detail' blog.slug %}"
                                class="archive-item-collection-content">
                                 <span> {{ blog.created |date:"m-d" }}&nbsp;&nbsp;&nbsp;</span>{{ blog.title }}
                             </a>

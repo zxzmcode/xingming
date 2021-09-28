@@ -67,13 +67,13 @@
         <!--<editor-folder desc="相关上一篇下一篇文章推荐">-->
         <div class="w-100  margin-b-lg">
             {% if article.get_pre %}
-            <a href="{% url 'article:article_detail' article.get_pre.id %}" class="btn float-left">
+            <a href="{% url 'article:article_detail' article.get_pre.slug %}" class="btn float-left">
                 <i class="fa fa-arrow-left"></i>
                 &nbsp;{{ article.get_pre.title }}
             </a>
             {% endif %}
             {% if article.get_next %}
-            <a href="{% url 'article:article_detail' article.get_next.id %}" class="btn float-right">
+            <a href="{% url 'article:article_detail' article.get_next.slug %}" class="btn float-right">
                 {{ article.get_next.title }}&nbsp;
                 <i class="fa fa-arrow-right"></i>
             </a>

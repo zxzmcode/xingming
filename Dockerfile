@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua
 RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
 EXPOSE 8080
 ENV TZ Asia/Shanghai
-CMD ["uwsgi","--ini","uwsgi.ini"]
+CMD ["/usr/local/bin/uwsgi","--ini","uwsgi.ini"]

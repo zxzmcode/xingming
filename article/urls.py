@@ -11,7 +11,7 @@ urlpatterns = [
     # 最新与最热,最新采用的就是list
     path("list/hot/", ArticleListView.as_view(), {'sort': 'v'}, name="article_hot_list"),
     # 文章详情
-    path("detail/<int:id>/", ArticleDetailView.as_view(), name="article_detail"),
+    path("detail/<slug:slug>/", ArticleDetailView.as_view(), name="article_detail"),
     # 分类总览
     path('category/', CategoryListView.as_view(), name='article_category'),
     # 分类总览列表

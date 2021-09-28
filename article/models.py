@@ -107,6 +107,9 @@ class Article(models.Model):
     # 文章标题图
     # avatar = models.ImageField(upload_to='article/%Y%m%d/', blank=True)
 
+    # 文章唯一表示符
+    slug = models.SlugField(unique=True)
+
     # 更新浏览量
     def update_views(self):
         self.total_views += 1
@@ -121,7 +124,7 @@ class Article(models.Model):
 
     # 获取文章地址
     def get_absolute_url(self):
-        return reverse('article:article_detail', args=[self.id])
+        return reverse('article:article_detail', args=[self.slug])
 
     # 内部类 class Meta 用于给 model 定义元数据
     class Meta:
