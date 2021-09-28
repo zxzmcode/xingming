@@ -21,7 +21,7 @@
     {% for article in search_list %}
     <div class="article-index shadow-small">
         <div class="font-size-article-header">
-            <a href="{% url 'article:article_detail' article.object.id %}">{% my_highlight article.object.title query %}
+            <a href="{% url 'article:article_detail' article.object.slug %}">{% my_highlight article.object.title query %}
             </a>
         </div>
         <div class="article-index-tags">
@@ -43,7 +43,7 @@
             <p>{% highlight this_body with query max_length 150 %}</p>
             {% endwith %}
             <div class="read-more cl-effect-14">
-                <a href="{% url 'article:article_detail' article.object.id %}" class="more-link">
+                <a href="{% url 'article:article_detail' article.object.slug %}" class="more-link">
                     继续阅读 <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
