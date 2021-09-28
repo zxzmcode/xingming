@@ -3,9 +3,8 @@
 FROM python:3.9.7
 WORKDIR /data/xingming
 ADD . /data/xingming
-RUN chmod +u start.sh
 RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
 EXPOSE 8080
 ENV TZ Asia/Shanghai
-CMD ["/data/xingming/start.sh"]
+ENTRYPOINT ["uwsgi","--ini","/data/xingming/uwsgi.ini"]
