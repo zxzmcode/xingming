@@ -28,6 +28,7 @@ requirements.txt --> 项目依赖，由于和以前一个项目公用一个conda
 由于Kudaompq未指定开源协议，同时本人暂未获取授权。所以改代码仅供学习，请勿用作商务用途。
 
 # 关于使用
+## 直接应用
 
 * 1、运行环境 
 
@@ -43,7 +44,7 @@ requirements.txt --> 项目依赖，由于和以前一个项目公用一个conda
 
 * 3、配置数据库和redis 
 
-  在修改config/database.conf文件
+  在修改config/database-*.conf文件，这里提供了linux和windows两个环境的，这是编写时有两个环境，一个是在Linux做测试的，一个是在Windows下进行开发的。所以读者按需修改，默认是database-windows.conf
 
     ```editorconfig
     [mysql_connection]
@@ -84,5 +85,35 @@ requirements.txt --> 项目依赖，由于和以前一个项目公用一个conda
   python manage.py runserver 0.0.0.0:80
   ```
 
-  
+## Docker环境
 
+* 1、配置数据库和redis 
+
+  在修改config/database-*.conf文件，这里提供了linux和windows两个环境的，这是编写时有两个环境，一个是在Linux做测试的，一个是在Windows下进行开发的。所以读者按需修改，默认是database-windows.conf
+
+    ```editorconfig
+    [mysql_connection]
+    # 下面内容不需要引号表示
+    name = mysql_db_name
+    user = mysql_db_user
+    password = mysql_password
+    host = mysql_ip
+    port = mysql_port
+    
+    [redis_connection]
+    location = redis://redis_ip:redis_port
+    password = redis_password
+    ```
+
+* 2、执行docker build 进行打包镜像
+
+```shell
+docker build -t xingming:1.0.1 .
+
+```
+
+* 3、启动镜像,并绑定到对应的8080端口
+
+```shell
+docker run -d -it -p 8080:8080 --name xingming xingming:1.0.1 
+```
