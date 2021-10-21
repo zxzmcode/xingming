@@ -108,7 +108,7 @@ class Article(models.Model):
     # avatar = models.ImageField(upload_to='article/%Y%m%d/', blank=True)
 
     # 文章唯一表示符
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True,default=None, blank=True)
 
     # 更新浏览量
     def update_views(self):
